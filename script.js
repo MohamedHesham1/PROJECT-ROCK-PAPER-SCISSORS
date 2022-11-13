@@ -12,22 +12,22 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  let player = playerSelection.toLowerCase().trim();
+  let playerChoice = playerSelection.toLowerCase().trim();
   if (
-    (player === "rock" && computerSelection === "paper") ||
-    (player === "paper" && computerSelection === "scissors") ||
-    (player === "scissors" && computerSelection === "rock")
+    (playerChoice === "rock" && computerSelection === "paper") ||
+    (playerChoice === "paper" && computerSelection === "scissors") ||
+    (playerChoice === "scissors" && computerSelection === "rock")
   ) {
-    console.log(`You Lose! ${computerSelection} beats ${player}`);
+    console.log(`You Lose! ${computerSelection} beats ${playerChoice}`);
     return computerScore++;
   } else if (
-    (player === "rock" && computerSelection === "scissors") ||
-    (player === "paper" && computerSelection === "rock") ||
-    (player === "scissors" && computerSelection === "paper")
+    (playerChoice === "rock" && computerSelection === "scissors") ||
+    (playerChoice === "paper" && computerSelection === "rock") ||
+    (playerChoice === "scissors" && computerSelection === "paper")
   ) {
-    console.log(`You Win! ${player} beats ${computerSelection}`);
+    console.log(`You Win! ${playerChoice} beats ${computerSelection}`);
     return playerScore++;
-  } else if (player === computerSelection) {
+  } else if (playerChoice === computerSelection) {
     console.log("Draw");
   } else {
     console.log("invalid value");
