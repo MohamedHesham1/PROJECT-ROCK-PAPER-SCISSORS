@@ -1,5 +1,5 @@
-let playerScore;
-let computerScore;
+let playerScore = 0;
+let computerScore = 0;
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * (4 - 1) + 1);
   if (randomNumber === 1) {
@@ -12,25 +12,20 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  let player = playerSelection.toLowerCase();
-  playerScore = 0;
-  computerScore = 0;
+  let player = playerSelection.toLowerCase().trim();
   if (
     (player === "rock" && computerSelection === "paper") ||
     (player === "paper" && computerSelection === "scissors") ||
     (player === "scissors" && computerSelection === "rock")
   ) {
-    console.log(
-      `You Lose! ${computerSelection} beats ${player}`,
-      computerSelection
-    );
+    console.log(`You Lose! ${computerSelection} beats ${player}`);
     return computerScore++;
   } else if (
     (player === "rock" && computerSelection === "scissors") ||
     (player === "paper" && computerSelection === "rock") ||
     (player === "scissors" && computerSelection === "paper")
   ) {
-    console.log(`You Win! ${player} beats ${computerSelection}`, playerScore);
+    console.log(`You Win! ${player} beats ${computerSelection}`);
     return playerScore++;
   } else if (player === computerSelection) {
     console.log("Draw");
@@ -51,8 +46,9 @@ function decideWinner(playerScore, computerScore) {
 
 function game() {
   for (i = 0; i < 5; i++) {
-    let playerSelection = prompt("Enter a value (Rock ,Paper,Scissors)");
+    let playerSelection = prompt("Enter a value (Rock,Paper,Scissors)");
     playRound(playerSelection, getComputerChoice());
+    console.log(`${playerScore} ${i}`, `${computerScore}`);
   }
   decideWinner(playerScore, computerScore);
 }
