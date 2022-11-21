@@ -12,25 +12,27 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  let playerChoice = playerSelection.toLowerCase().trim();
+  const playerChoice = playerSelection.toLowerCase().trim();
+  const result = document.querySelector(".result");
+
   if (
     (playerChoice === "rock" && computerSelection === "paper") ||
     (playerChoice === "paper" && computerSelection === "scissors") ||
     (playerChoice === "scissors" && computerSelection === "rock")
   ) {
-    console.log(`You Lose! ${computerSelection} beats ${playerChoice}`);
+    result.innerHTML += `<p>You Lose! ${computerSelection} beats ${playerChoice}</p>`;
     return computerScore++;
   } else if (
     (playerChoice === "rock" && computerSelection === "scissors") ||
     (playerChoice === "paper" && computerSelection === "rock") ||
     (playerChoice === "scissors" && computerSelection === "paper")
   ) {
-    console.log(`You Win! ${playerChoice} beats ${computerSelection}`);
+    result.innerHTML += `<p>You Win! ${playerChoice} beats ${computerSelection}</p>`;
     return playerScore++;
   } else if (playerChoice === computerSelection) {
-    console.log("Draw");
+    result.innerHTML += "<p>Draw</p>";
   } else {
-    console.log("invalid value");
+    result.innerText += "<p>invalid value</p>";
   }
 }
 
@@ -45,11 +47,23 @@ function decideWinner(playerScore, computerScore) {
 }
 
 function game() {
-  // for (i = 0; i < 5; i++) {
-  //   let playerSelection = prompt("Enter a value (Rock,Paper,Scissors)");
-  //   playRound(playerSelection, getComputerChoice());
-  //   console.log(`${playerScore} ${i}`, `${computerScore}`);
-  // }
+  const buttons = document.querySelectorAll("button");
+  let imgs = document.querySelectorAll("img");
+  imgs = Array.from(imgs);
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      let playerSelection;
+      if (e.target === btn) {
+        const targetNode = e.target;
+        playerSelection = targetNode.getAttribute("data-id");
+      } else if (imgs.includes(e.target)) {
+        const targetNode = e.target.parentNode;
+        playerSelection = targetNode.getAttribute("data-id");
+      }
+      playRound(playerSelection, getComputerChoice());
+    });
+  });
+
   decideWinner(playerScore, computerScore);
 }
 game();

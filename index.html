@@ -14,15 +14,20 @@
       </nav>
     </header>
     <main>
-      <button class="btn rock--btn" type="button">
-        <img src="assets/rock.png" alt="Rock" />
-      </button>
-      <button class="btn paper--btn" type="button">
-        <img src="assets/toilet-roll.png" alt="Paper" />
-      </button>
-      <button class="btn scissors--btn" type="button">
-        <img src="assets/knife.png" alt="Scissors" />
-      </button>
+      <section class="selection">
+        <button data-id="rock" class="btn" type="button">
+          <img class="rock--img" src="assets/rock.png" alt="Rock" />
+        </button>
+        <button data-id="paper" class="btn" type="button">
+          <img class="paper--img" src="assets/toilet-roll.png" alt="Paper" />
+        </button>
+        <button data-id="scissors" class="btn" type="button">
+          <img class="scissors--img" src="assets/knife.png" alt="Scissors" />
+        </button>
+      </section>
+      <section class="display">
+        <div class="result"></div>
+      </section>
     </main>
 
     <script src="script.js"></script>
