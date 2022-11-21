@@ -1,5 +1,9 @@
 let playerScore = 0;
 let computerScore = 0;
+const result = document.querySelector(".result");
+const modal = document.querySelector(".modal");
+const playerPoints = document.querySelector(".playerPoints");
+const computerPoints = document.querySelector(".computerPoints");
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * (4 - 1) + 1);
   if (randomNumber === 1) {
@@ -13,36 +17,49 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   const playerChoice = playerSelection.toLowerCase().trim();
-  const result = document.querySelector(".result");
 
   if (
     (playerChoice === "rock" && computerSelection === "paper") ||
     (playerChoice === "paper" && computerSelection === "scissors") ||
     (playerChoice === "scissors" && computerSelection === "rock")
   ) {
-    result.innerHTML += `<p>You Lose! ${computerSelection} beats ${playerChoice}</p>`;
+    computerPoints.innerHTML += `<p>Computer Wins! ${computerSelection} beats ${playerChoice}</p>`;
     return computerScore++;
   } else if (
     (playerChoice === "rock" && computerSelection === "scissors") ||
     (playerChoice === "paper" && computerSelection === "rock") ||
     (playerChoice === "scissors" && computerSelection === "paper")
   ) {
-    result.innerHTML += `<p>You Win! ${playerChoice} beats ${computerSelection}</p>`;
+    playerPoints.innerHTML += `<p> You Win! ${playerChoice} beats ${computerSelection}</p>`;
     return playerScore++;
   } else if (playerChoice === computerSelection) {
-    result.innerHTML += "<p>Draw</p>";
+    playerPoints.innerHTML += "<p>Draw</p>";
   } else {
-    result.innerText += "<p>invalid value</p>";
+    playerPoints.innerText += "<p>invalid value</p>";
   }
 }
+function playAgain() {
+  const playAgainBtn = document.querySelector(".play-again-btn");
+  playAgainBtn.addEventListener("click", () => {
+    playerScore = 0;
+    computerScore = 0;
+    modal.classList.toggle("hidden");
+    game();
+  });
+}
+function showScore(playerScore, computerScore) {
+  const playerCounter = document.querySelector(".playerCounter");
+  const computerCounter = document.querySelector(".computerCounter");
+  playerCounter.textContent = `Your Points : ${playerScore}`;
+  computerCounter.textContent = `Computer Points : ${computerScore}`;
+  if (playerScore === 5) {
+    modal.classList.toggle("hidden");
+    return (result.innerHTML += "<p>Congratulations, You Won!</p>");
+  }
+  if (computerScore === 5) {
+    modal.classList.toggle("hidden");
 
-function decideWinner(playerScore, computerScore) {
-  if (playerScore > computerScore) {
-    console.log("Congratulations, You Won!");
-  } else if (playerScore < computerScore) {
-    console.log("You've lost. Better luck next time!");
-  } else if (computerScore === playerScore) {
-    console.log("It's a Draw!");
+    return (result.innerHTML += "You've lost. Better luck next time!");
   }
 }
 
@@ -61,9 +78,9 @@ function game() {
         playerSelection = targetNode.getAttribute("data-id");
       }
       playRound(playerSelection, getComputerChoice());
+      showScore(playerScore, computerScore);
+      playAgain();
     });
   });
-
-  decideWinner(playerScore, computerScore);
 }
 game();

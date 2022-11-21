@@ -13,21 +13,31 @@
         <h1 class="title">Rock Paper Scissors</h1>
       </nav>
     </header>
+    <div class="modal hidden">
+      <div class="result">
+        <button class="play-again-btn" type="button">Play Again!</button>
+      </div>
+    </div>
     <main>
-      <section class="selection">
+      <div class="selection">
         <button data-id="rock" class="btn" type="button">
-          <img class="rock--img" src="assets/rock.png" alt="Rock" />
+          <img class="rock-img" src="assets/rock.png" alt="Rock" />
         </button>
         <button data-id="paper" class="btn" type="button">
-          <img class="paper--img" src="assets/toilet-roll.png" alt="Paper" />
+          <img class="paper-img" src="assets/toilet-roll.png" alt="Paper" />
         </button>
         <button data-id="scissors" class="btn" type="button">
-          <img class="scissors--img" src="assets/knife.png" alt="Scissors" />
+          <img class="scissors-img" src="assets/knife.png" alt="Scissors" />
         </button>
-      </section>
-      <section class="display">
-        <div class="result"></div>
-      </section>
+      </div>
+      <div class="display">
+        <div class="points playerPoints">
+          <p class="playerCounter">Your Points : 0</p>
+        </div>
+        <div class="points computerPoints">
+          <p class="computerCounter">Computer Points : 0</p>
+        </div>
+      </div>
     </main>
 
     <script src="script.js"></script>
