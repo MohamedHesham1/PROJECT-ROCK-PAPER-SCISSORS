@@ -45,11 +45,11 @@ function decideWinner(playerScore, computerScore) {
 }
 
 function game() {
-  for (i = 0; i < 5; i++) {
-    let playerSelection = prompt("Enter a value (Rock,Paper,Scissors)");
-    playRound(playerSelection, getComputerChoice());
-    console.log(`${playerScore} ${i}`, `${computerScore}`);
-  }
+  // for (i = 0; i < 5; i++) {
+  //   let playerSelection = prompt("Enter a value (Rock,Paper,Scissors)");
+  //   playRound(playerSelection, getComputerChoice());
+  //   console.log(`${playerScore} ${i}`, `${computerScore}`);
+  // }
   decideWinner(playerScore, computerScore);
 }
 game();
