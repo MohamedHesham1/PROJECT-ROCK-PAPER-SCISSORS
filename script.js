@@ -41,10 +41,7 @@ function playRound(playerSelection, computerSelection) {
 function playAgain() {
   const playAgainBtn = document.querySelector(".play-again-btn");
   playAgainBtn.addEventListener("click", () => {
-    playerScore = 0;
-    computerScore = 0;
-    modal.classList.toggle("hidden");
-    game();
+    window.location.reload();
   });
 }
 function showScore(playerScore, computerScore) {
